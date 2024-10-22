@@ -4,8 +4,10 @@ name: Compile Latex and Release PDF
 
 on:
   push:
-    tags:
-      - '*.*.*'
+    branches:
+      - main   
+#    tags:
+#      - '*.*.*'
     
 jobs:
   build_latex:
