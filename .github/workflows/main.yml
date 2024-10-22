@@ -9,6 +9,7 @@ on:
     
 jobs:
   build_latex:
+    permissions: write-all
     runs-on: ubuntu-latest
     steps:
       - name: Set up Git repository
@@ -36,6 +37,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./main.pdf
-          asset_name: main.pdf
+          asset_path: ./principal.pdf
+          asset_name: principal.pdf
           asset_content_type: pdf
