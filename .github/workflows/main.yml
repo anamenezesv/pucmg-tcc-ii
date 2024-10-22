@@ -1,41 +1,24 @@
-# Just an evaluation...
-name: Compile the Fuck Latex and Release PDF  
+name: Build LaTeX Document
 
 on:
   push:
     tags:
-      - '*.*.*'
-    
+      - "v*"
 jobs:
   build_latex:
-    permissions: write-all
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git repository
-        uses: actions/checkout@v2
-      - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v2
+      - name: Set Up Git Repository
+        uses: actions/checkout@v4
+      - name: Compile LaTeX Document
+        uses: xu-cheng/latex-action@v3
         with:
-          root_file: principal.tex
-
-      - name: Create Release
-        id: create_release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          work_in_root_file_dir: true
+          root_file: |
+            principal.tex
+      - name: Release
+        uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ github.ref }}
-          release_name: Release ${{ github.ref }}
-          draft: false
-          prerelease: false
-
-      - name: Upload Release Asset
-        id: upload-release-asset 
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }} 
-          asset_path: ./principal.pdf
-          asset_name: principal.pdf
-          asset_content_type: pdf
+          generate_release_notes: true
+          files: |
+            principal.pdf
