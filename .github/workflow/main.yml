@@ -1,5 +1,5 @@
 # Just an evaluation...
-name: Compile Latex and Release PDF  
+name: Compile the Fuck Latex and Release PDF  
 
 on:
   push:
