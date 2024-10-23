@@ -98,7 +98,7 @@
 
 \begin{abstract}
 \noindent Para que haja difusão dos veículos autônomos, é necessário que eles sejam capazes de tomar decisões em cenários inesperados de forma rápida e assertiva e, por isso, é importante que o passageiro possa confiar na inteligência artificial para tomada de decisões, visto que muitas vezes o poder computacional ultrapassa o tempo de reação de quem está dirigindo. Considerando os escopos adversos que dependem da parte sensorial do veículo, neste artigo é trabalhado o cenário de baixa visibilidade, dado principalmente por chuvas fortes, lombadas e nevascas. Utilizando o simulador CARLA junto ao \textit{framework} ANTI CARLA para emular esses cenários, recorrendo aos sensores embutidos no programa e algoritmos de aprendizado por reforço (do inglês, \textit{reinforcement learning}), foi desenvolvida uma solução para que o veículo autônomo verifique faixas na estrada, condição que se torna precária em cenários de baixa visibilidade. Os experimentos iniciais trouxeram resultados positivos com boas taxas de sucesso nos casos de teste, dados os conceitos descritos. 
-\\\textbf{\keyword{Palavras-chave: }}Veículos Autônomos. CARLA. Simulação. Inteligência Artificial.
+\\\textbf{\keyword{Palavras-chave: }}Veículos Autônomos. CARLA. Simulação. Inteligência Artificial. Aprendizado por Reforço. Learning by Cheating.
 
 \end{abstract}
 
@@ -108,7 +108,7 @@
 \begin{abstract}
 \noindent
 For the best adoption of autonomous vehicles, it seems necessary for them to be capable of handling quick and assertive decisions in unexpected scenarios, and for it, is important that the driver can trust in artificial inteligence for decision making, as the computational power surpasses the driver reaction time. Considerating the unfavorable scopes that depends on the sensorial part of the vehicle, this article works in the low visibility, mainly given by storms, speed bumps and snow storms. Utilizing CARLA simulator with the ANTI CARLA framework to emulate this scenarios, recurring to embued sensors at the software and reinforcement learning algorithms, we developed a solution that makes the autonomous vehicle verify road strips, which becomes precarious in low visibility scenarios. The initial experiments brung positive results with good success rates in test cases, given the described concepts. 
-\\\textbf{\keyword{Keywords: }} Autonomous vehicles. CARLA. Simulation. Artificial Intelligence.
+\\\textbf{\keyword{Keywords: }} Autonomous vehicles. CARLA. Simulation. Artificial Intelligence. Refoircement Learning. Learning by Cheating.
 \end{abstract}
 
 \selectlanguage{brazilian}
@@ -186,9 +186,9 @@ O CARLA também provê objetos como construções, estradas, veículos e condiç
 
 \subsection{Learning by Cheating}
 
-A direção de veículos autônomos baseada em visão ainda é difícil, pois o sistema precisa aprender a perceber o mundo e agir nele no mesmo momento. Por isso, o \textit{Learning by Cheating} é um método de aprendizagem de máquina que simplifica o processo decompondo em duas etapas, usando a lógica de aluno e professor. Primeiro, existe um agente que tem acesso a informações do layout real do ambiente e as posições de todos os participantes do tráfego. Na segunda etapa, o agente privilegiado atua como um professor que treina um agente puramente \textit{sensorimotor} baseado em visão, que recebe informações sensoriais e toma decisões tendo-as como base, seu objetivo é criar uma politica que imite as ações do professor.
+A direção de veículos autônomos baseada em visão ainda é difícil, pois o sistema precisa aprender a perceber o mundo e agir nele no mesmo momento. Por isso, o \textit{Learning by Cheating} \cite{DBLP:journals/corr/abs-1912-12294} é um método de aprendizagem de máquina que simplifica o processo decompondo em duas etapas, usando a lógica de aluno e professor. Primeiro, existe um agente que tem acesso a informações do layout real do ambiente e as posições de todos os participantes do tráfego. Na segunda etapa, o agente privilegiado atua como um professor que treina um agente puramente \textit{sensorimotor} (que tem capacidade de processar informações sensoriais e gerar respostas motoras), seu objetivo é criar uma politica que imite as ações do professor.
  
- De acordo com \citeonline{DBLP:journals/corr/abs-1912-12294}, o \textit{Learning by Cheating} é uma promissora técnica que tem como vantagens: o agente privilegiado generaliza melhor, ou seja, pode aplicar o aprendizado a mais situações, a supervisão do agente privilegiado para o agente \textit{sensorimotor} (que tem capacidade de processar informações sensoriais e gerar respostas motoras) é mais forte, e o agente privilegiado fornece respostas em tempo real durante o treinamento.
+ De acordo com \citeonline{DBLP:journals/corr/abs-1912-12294}, o \textit{Learning by Cheating} é uma promissora técnica que tem como vantagens: o agente privilegiado generaliza melhor, ou seja, pode aplicar o aprendizado a mais situações, a supervisão do agente privilegiado para o agente \textit{sensorimotor} é mais forte, e o agente privilegiado fornece respostas em tempo real durante o treinamento.
  
  Em relação a estas vantagens, ele generaliza melhor porque atua sobre uma representação muito compacta, ou seja, ele trabalha com informações simplificadas e essenciais. Isso permite que ele foque em decisões de alto nível sem ser sobrecarregado por dados desnecessários ou ruído visual. Dessa forma, o aprendizado é mais eficiente e menos suscetível a variações, o que o ajuda a adaptar-se melhor a diferentes cenários durante o treinamento. 
  
@@ -223,10 +223,7 @@ e análise dos resultados.
 
 \subsection{Materiais}
 
-Foi utilizado a linguagem de programação \textit{Python} para a implementação de uma Inteligência Artificial (IA) com algoritmo \textit{Deep Reinforcement Learning} que controla o veículo com base nas APIs disponibilizadas pelo simulador CARLA.
-
-
-No CARLA foram utilizados os mapas das cidades disponíveis no simulador como ambiente de teste, no qual contém edifícios, semáforos, tráfego  de pedestres e veículos, entre outros atores que ajudam na simulação e desenvolvimento de um veículo autônomo, como na Figura \ref{fig:cidade_carla_simulator_primeira_pessoa}.
+Foi utilizado a linguagem de programação \textit{Python} para a implementação de uma Inteligência Artificial (IA) com algoritmo \textit{Deep Reinforcement Learning} que controla o veículo com base nas APIs disponibilizadas pelo simulador CARLA. No CARLA foram utilizados os mapas das cidades disponíveis no simulador como ambiente de teste, no qual contém edifícios, semáforos, tráfego  de pedestres e veículos, entre outros atores que ajudam na simulação e desenvolvimento de um veículo autônomo, como na Figura \ref{fig:cidade_carla_simulator_primeira_pessoa}.
 
 
 \begin{figure}[!htb]
@@ -298,16 +295,16 @@ Uma outra opção é o Deepdrive \cite{deepdrive}, simulador com suporte a Windo
 
 Diante dessas possibilidades, em relação a definição do simulador que seria utilizado, o CARLA é um dos mais competentes para com as necessidades deste trabalho, tendo foco principal na simulação, implementação e execução de algoritmos em veículos autônomos, possuindo suporte abrangente em sensores automotivos e uma comunidade de desenvolvimento ativa.
 
-O CARLA é um simulador de direção autônoma de \textit{open-source} \citeonline{Dosovitskiy17}, criado previamente para ser uma API modular abordando uma série de tarefas envolvendo direção. Inclui ativos digitais como layouts urbanos, edifícios e veículos para criação de mapas, o que amplia mais ainda os escopos para teste. O programa também pode ser usado para comparar o desempenho de três métodos de pipelines modulares de direção autônoma: um modelo treinado usando aprendizado por imitação, um modelo treinado através de aprendizado por reforço e um modelo ensinado através de aprendizado por reforço. Algumas das principais características do CARLA incluem escalabilidade através de uma arquitetura de servidor multi-cliente, um sensor de direção autônoma, uma API flexível, simulação rápida para planejamento e controle, criação de mapas, simulação de cenários de tráfego e bases de direção autônoma.
+O CARLA é um simulador de direção autônoma de \textit{open-source} \cite{Dosovitskiy17}, criado previamente para ser uma API modular abordando uma série de tarefas envolvendo direção. Inclui ativos digitais como layouts urbanos, edifícios e veículos para criação de mapas, o que amplia mais ainda os escopos para teste. O programa também pode ser usado para comparar o desempenho de três métodos de pipelines modulares de direção autônoma: um modelo treinado usando aprendizado por imitação, um modelo treinado através de aprendizado por reforço e um modelo ensinado através de aprendizado por reforço. Algumas das principais características do CARLA incluem escalabilidade através de uma arquitetura de servidor multi-cliente, um sensor de direção autônoma, uma API flexível, simulação rápida para planejamento e controle, criação de mapas, simulação de cenários de tráfego e bases de direção autônoma.
 
 
-O uso de simuladores para treinamento de veículos autônomos é crucial para implementar algoritmos de Inteligência Artificial e expô-lo aos mais diversos cenários, resultando em uma melhoria substancial no treinamento em momentos normais e adversos. Dito isso, é importante treinar o modelo em diversas situações cotidianas possíveis vivenciadas por um motorista, bem como a cenários adversos que não podem ser reproduzidos com constância no mundo real. Dessa forma, o uso de uma tecnologia que reproduz o mundo real contribui para um aprimoramento na confiabilidade no algoritmo implementado.
+O uso de simuladores para treinamento de veículos autônomos é crucial para implementar algoritmos de Inteligência Artificial e expô-lo aos mais diversos cenários, resultando em uma melhoria substancial no treinamento em momentos normais e adversos. Assim, é importante treinar o modelo em diversas situações cotidianas possíveis vivenciadas por um motorista, bem como a cenários adversos que não podem ser reproduzidos com constância no mundo real. Dessa forma, o uso de uma tecnologia que reproduz o mundo real contribui para um aprimoramento na confiabilidade no algoritmo implementado.
 
 Este artigo busca validar o uso de aprendizado por reforço em veículos autônomos para reagir em situações adversas no simulador CARLA, possibilitando um treinamento extensivo da IA em diversos cenários e tornando o modelo mais preparado para situações adversas. Essa abordagem não só aumenta o preparo dos copilotos existentes, como também melhora a robustez e a confiabilidade dos modelos.
 
 A utilização do simulador no teste e treinamento do modelo de aprendizado por reforço é crucial, mas não isenta a necessidade de validação no mundo real. Pelo simulador, é apenas possível construir uma aplicação robusta e confiável e reduzir o tempo de treinamento, além de possibilitar o treinamento em cenários adversos. Outro benefício é a possibilidade de reproduzir problemas encontrados e a facilidade na otimização do treinamento, garantindo um produto de alta responsividade e eficiência para validar a viabilidade de veículos autônomos.
 
-Na segunda parte do estudo, foi utilizado os cenários de trânsito disponibilizados pelo ANTI-CARLA para automatizar a criação dos ambientes e automação dos testes. Para a criação de um cenário é necessário definir os parâmetros referente a densidade de trânsito, rota e condições climáticas. Posto isso, foi construído um ambiente controlável e replicável para validação do algorítimo. O próximo passo foi a escolha com base nos estudo apresentado por \citeonline{10189852} do agente copiloto \textit{Learning by Cheating} (LBC) para validação das suas capacidades de conclusão das rotas propostas.
+Na segunda parte do estudo, foi utilizado os cenários de trânsito disponibilizados pelo ANTI-CARLA para automatizar a criação dos ambientes e automação dos testes. Para a criação de um cenário é necessário definir os parâmetros referente a densidade de trânsito, rota e condições climáticas. Posto isso, foi construído um ambiente controlável e replicável para validação do algorítimo. O próximo passo foi a escolha com base no estudo apresentado por \citeonline{10189852} do agente copiloto \textit{Learning by Cheating} (LBC) para validação das suas capacidades de conclusão das rotas propostas. A escolha também foi orientada devido ao controle lateral e longitudinal demonstrado por este copiloto, com tratamento para desvio e evitação de colisões, que atende de forma significativa os requisitos para se classificar com nível de autonomia 3 em cenários com boa visibilidade.
 
 % =========== Coletar dados ============= tom 
 
@@ -349,17 +346,17 @@ Como resultados preliminares, para avaliar o modelo proposto, foi utilizado o AN
 
 Para o copiloto foi utilizado o modelo \textit{Learning by Cheating} (LBC) introduzido por \citeonline{chen2019learning}, que usa o processo de aprendizagem por imitação para o treinamento do agente de direção. Além disso, em cada simulação o agente percorre uma rota do ponto A até o B, onde foram avaliados os seguintes critérios:
 \begin{enumerate}
-    \item[a)] Porcentagem da rota concluída: É definida pela razão da distância percorrida e a distância total do percurso; 
+    \item[a)] Porcentagem da rota concluída: é definida pela razão da distância percorrida e a distância total do percurso; 
     
-    \item[b)] Porcentagem de extravio da faixa: Essa métrica é calculada pela razão entre a distância total percorrida fora das faixas permitidas e a distância total do percurso concluído. O sistema monitora continuamente a posição do veículo em relação a pontos de referência, chamados de \textit{waypoints}, ao longo da rota. Se a distância entre a posição do veículo e a faixa permitida ultrapassa um limite pré-definido, o veículo é considerado fora da faixa. 
+    \item[b)] Porcentagem de extravio da faixa: essa métrica é calculada pela razão entre a distância total percorrida fora das faixas permitidas e a distância total do percurso concluído. O sistema monitora continuamente a posição do veículo em relação a pontos de referência, chamados de \textit{waypoints}, ao longo da rota. Se a distância entre a posição do veículo e a faixa permitida ultrapassa um limite pré-definido, o veículo é considerado fora da faixa. 
     
-    \item[d)] Testes de colisão: A métrica de colisão é calculada com base na contagem de eventos disparados pelo sensor de colisão do CARLA. Cada vez que o veículo colide com um objeto, o sensor gera um evento que é registrado, aumentando a contagem da métrica. O sistema contabiliza colisões com outros veículos, objetos estáticos e pequenas quedas, aplicando filtro para ignorar colisões pequenas ou repetidas com o mesmo objeto;
+    \item[c)] Testes de colisão: a métrica de colisão é calculada com base na contagem de eventos disparados pelo sensor de colisão do CARLA. Cada vez que o veículo colide com um objeto, o sensor gera um evento que é registrado, aumentando a contagem da métrica. O sistema contabiliza colisões com outros veículos, objetos estáticos e pequenas quedas, aplicando filtro para ignorar colisões pequenas ou repetidas com o mesmo objeto;
     
-    \item[d)] Tempo Esgotado: A métrica de  tempo esgotado controla um limite de tempo na simulação usando o tempo interno do CARLA. Quando o tempo especificado é alcançado, o status da classe muda para \textit{FALHA}, indicando que o tempo limite foi atingido;
+    \item[d)] Tempo esgotado: a métrica de  tempo esgotado controla um limite de tempo na simulação usando o tempo interno do CARLA. Quando o tempo especificado é alcançado, o status da classe muda para \textit{FALHA}, indicando que o tempo limite foi atingido;
 
 \end{enumerate}
 
-Os critérios foram definidos com a finalidade de avaliar as funções mais básicas do copiloto, principalmente de se manter em uma pista sem colidir até o fim do percurso. Com estas métricas pode-se entender o desempenho do LBC.
+Os critérios foram definidos com a finalidade de avaliar as funções mais básicas do copiloto, principalmente de se manter em uma pista sem colidir até o fim do percurso. Com essas métricas pode-se entender o desempenho do LBC.
 
 Como já definido, o percurso consiste em percorrer de um ponto A do mapa até um ponto B, e é desejado que o veículo complete-o totalmente. Nos casos de teste demonstrados, foram utilizados apenas percursos curtos, como estradas retas sem cruzamentos e com curvas suaves, com a finalidade de focar apenas nas situações adversas.
 
@@ -372,7 +369,7 @@ Nos casos de teste, foram consideradas tanto a invasão de faixas erradas quanto
 Para criar os cenários de testes, é possível manipular os eventos e características no mapa da simulação através dos arquivos de configurações do próprio ANTI-CARLA. Os parâmetros são agrupados em 3 itens: 1 - Clima, 2 - Densidade de tráfego e 3 - Densidade de pedestres.
 
 
-Para manipulação de clima foi ajustado alguns parâmetros como nebulosidade, que varia de 0 a 100, sendo 0 com nenhuma nebulosidade e 100 com a maior quantidade permito pelo CARLA. Além disso foi manipulado a precipitação que também vai de 0 a 100 com a mesma lógica da nebulosidade. Outras características manipuladas foram a densidade do nevoeiro, também variando de 0 a 100, e a distância de visibilidade do nevoeiro de 0 a 100 onde 0 e 0 metros de distancia e 100 são 1000 metros de distância. Para manipular o dia e noite é utilizado o Ângulo de altitude do sol que vai de 0 a 90, onde 0 representa 0° de referencia ao horizonte e 90 é 90°.
+Para manipulação de clima foi ajustado alguns parâmetros como nebulosidade, que varia de 0 a 100, sendo 0 com nenhuma nebulosidade e 100 com a maior quantidade permito pelo CARLA. Além disso foi manipulado a precipitação que também vai de 0 a 100 com a mesma lógica da nebulosidade. Outras características manipuladas foram a densidade do nevoeiro, também variando de 0 a 100, e a distância de visibilidade do nevoeiro de 0 a 100 onde 0 é igual a 0 metros de distancia e 100 são 1000 metros de distância. Para manipular o dia e noite é utilizado o Ângulo de altitude do sol que vai de 0 a 90, onde 0 representa 0° de referencia ao horizonte e 90 é 90°.
 
 A simulação ocorre em 5 cenários diferentes criados pelo próprio ANTI-CARLA, onde foi executado 1 teste para cada cenário em dois tipos de condições:
 
