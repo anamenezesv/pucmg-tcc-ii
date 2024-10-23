@@ -36,26 +36,31 @@
 \newcommand{\funcaoB}{}
 \newcommand{\emailB}{arthrviniciusbarbosa@gmail.com}
 \newcommand{\cursB}{Graduação em Engenharia de Computação da PUC Minas}
-% 
-\newcommand{\AutorC}{Fernando Luiz Lessa de Araujo}
+%
+\newcommand{\AutorC}{Christian D. C. Vieira}
 \newcommand{\funcaoC}{}
-\newcommand{\emailC}{feluizlessa@gmail.com}
+\newcommand{\emailC}{christian.david@sga.pucminas.br}
 \newcommand{\cursC}{Graduação em Engenharia de Computação da PUC Minas}
-
-\newcommand{\AutorD}{Gleydiston Braganca Martins Dos Santos}
+% 
+\newcommand{\AutorD}{Fernando Luiz Lessa de Araujo}
 \newcommand{\funcaoD}{}
-\newcommand{\emailD}{gleydiston35@gmail.com}
+\newcommand{\emailD}{feluizlessa@gmail.com}
 \newcommand{\cursD}{Graduação em Engenharia de Computação da PUC Minas}
 
-\newcommand{\AutorE}{Pedro Augusto Vaz De Souza E Silva}
+\newcommand{\AutorE}{Gleydiston Braganca Martins Dos Santos}
 \newcommand{\funcaoE}{}
-\newcommand{\emailE}{pavssilva@sga.pucminas.br}
+\newcommand{\emailE}{gleydiston35@gmail.com}
 \newcommand{\cursE}{Graduação em Engenharia de Computação da PUC Minas}
 
-\newcommand{\AutorF}{Felipe Augusto Lara Soares}
-\newcommand{\funcaoF}{Orientador}
-\newcommand{\emailF}{felipesoares@pucminas.br}
-\newcommand{\cursF}{Engenharia de Computação}
+\newcommand{\AutorF}{Pedro Augusto Vaz De Souza E Silva}
+\newcommand{\funcaoF}{}
+\newcommand{\emailF}{pavssilva@sga.pucminas.br}
+\newcommand{\cursF}{Graduação em Engenharia de Computação da PUC Minas}
+
+\newcommand{\AutorG}{Felipe Augusto Lara Soares}
+\newcommand{\funcaoG}{Orientador}
+\newcommand{\emailG}{felipesoares@pucminas.br}
+\newcommand{\cursG}{Engenharia de Computação}
 
 % Definir macros para o nome da Instituição, da Faculdade, etc.
 \newcommand{\univ}{Pontifícia Universidade Católica de Minas Gerais}
@@ -212,7 +217,9 @@ O artigo \citeonline{10189852} propõe um algoritmo utilizando \textit{Deep Rein
 Similarmente, no artigo \citeonline{9289701}, os autores também testaram a aplicação de um algoritmo \textit{Deep Q-Learning} em simulações ad-hoc no CARLA para detectar e desviar de buracos em estradas, respeitando regras de eficiência energética e velocidade de execução para o funcionamento saudável dos sensores em uma implementação real. Na conclusão, decidiram manter apenas o sistema de detecção de buracos, pois os resultados do sistema de desvio não foi satisfatório, apresentando resultados percentuais abaixo da taxa de sucesso em cenários na quais pilotos humanos conseguiriam desviar.
 
 \section{Metodologia}
-Nesta seção, são explorados os materiais e métodos fundamentais utilizados para a implementação de um veículo autônomo enquadrado no nível 3 descrito na Tabela \ref{tab:TabelaNAD} e análise dos resultados.
+Nesta seção, são explorados os materiais e método utilizados para a implementação
+de um veículo autônomo enquadrado no nível 3 descrito na Tabela \ref{tab:TabelaNAD}
+e análise dos resultados.
 
 \subsection{Materiais}
 
@@ -239,8 +246,11 @@ As imagens utilizadas no treinamento da IA foram obtidas pelo \textit{sensor cam
 
 Utilizando o \textit{sensor lidar ray cast} que simula um sensor LIDAR rotativo de projeção de raios de luz, é possível gerar uma nuvem de pontos da superfície externa de um objeto que, ao final, pode ser utilizado para detectar a distância que o objeto se encontra.
 
-O sensor \textit{camera semantic segmentation} obtém imagens classificando cada objeto com uma cor de acordo com a etiqueta que o elemento recebeu no início da simulação e assim ajudando a definir melhor o que é cada objeto do cenário onde o veículo está localizado, como pode ser observado na Figura \ref{fig:carla_simulator_sensor_segmentacao}.
-
+O sensor \textit{camera semantic segmentation} obtém imagens classificando cada
+objeto com uma cor de acordo com a etiqueta que o elemento recebeu no início da
+simulação e assim ajudando a definir melhor o que é cada objeto do cenário onde
+o veículo está localizado.\iffalse, como pode ser observado na
+Figura \ref{fig:carla_simulator_sensor_segmentacao}.
 \begin{figure}[h]
     \centering
     \caption{Visão do sensor de segmentação semântica no CARLA}
@@ -249,7 +259,7 @@ O sensor \textit{camera semantic segmentation} obtém imagens classificando cada
      \\\textbf{\footnotesize Fonte: Elaborado pelos autores}
     \label{fig:carla_simulator_sensor_segmentacao}
 \end{figure}
-
+\fi
 Ainda sobre sensores, foi utilizado o \textit{sensor other collision} que registra um evento, sempre que há uma colisão com um ator dentro do ambiente do CARLA. Para processar e tratar as imagens obtidas, foi utilizado a biblioteca \textit{OpenCV}, responsável pelos algoritmos de visão computacional fornecendo os dados para a Inteligência Artificial que foi construída com ajuda da ferramenta \textit{Pytorch}, que trata os dados para a tomada de decisões, refletindo na direção dentro do CARLA.
 
 % sobre sensor.camera.rgb
@@ -278,7 +288,7 @@ Nesta subseção, é apresentado o método para o estudo, desenvolvimento e aná
 
 Inicialmente, foi conduzido um estudo bibliográfico com o propósito de examinar a utilização de direção de veículos autônomos em simuladores e compreender a efetividade do seu uso para treinamento e direção de veículos em um cenário controlado. Durante essa fase, foi possível observar que existem simuladores que estão munidos com as principais ferramentas e sensores, e, além disso, possuem constantes atualizações, o que contribui com o avanço da tecnologia de direção autônoma, resultando em notáveis transformações.
 
-Em decorrência da realização dos treinamentos, para avaliar o desenvolvimento da solução, foi necessária a busca de simuladores que pudessem auxiliar, tanto na execução, quanto demonstração das evoluções do projeto. Conforme apontado por \citeonline{s19030648}, existem diversas soluções genéricas para validação e simulação de um carro autônomo, no entanto, baseado na necessidade de obter semelhança à realidade, sensores funcionais às análises dos cenários desejados, é prudente a busca de simuladores consolidados que possuam as características essenciais ao problema tratado.
+Em decorrência da realização dos treinamentos, para avaliar o desenvolvimento da solução, foi necessária a busca de simuladores que pudessem auxiliar, tanto na execução, quanto demonstração das evoluções do projeto. Conforme apontado por \citeonline{s19030648}, existem diversas soluções genéricas para validação e simulação de um carro autônomo, no entanto, baseado na necessidade de obter semelhança à realidade e sensores funcionais às análises dos cenários desejados, é prudente a busca de simuladores consolidados que possuam as características essenciais ao problema tratado.
 
 Dentre os principais simuladores encontrados, houve uma análise em relação ao AirSim \cite{airsim2017fsr}, na qual se trata de um simulador multiplataforma \textit{open-source}, utilizado para treinamento de drones, carros e outros, tendo suporte à simulações de software e hardware em loop. Foi criado por engenheiros da Microsoft como uma plataforma para pesquisadores de IA experimentarem algoritmos de aprendizado profundo, visão computacional e aprendizado por reforço para carros autônomos.
 
@@ -541,25 +551,14 @@ Como iniciativa para os próximos passos do trabalho, foi realizado um estudo de
     \label{fig:lane-detect3}
 \end{figure}
 
-Os resultados obtidos neste trabalho servirão como base para o desenvolvimento do TCC2, onde será aprimorado o modelo de copiloto para situações adversas, com o objetivo de tornar o veículo autônomo mais seguro e confiável.
-
-
-\section{Cronograma}
-
-O planejamento para a continuação do desenvolvimento do trabalho durante o segundo semestre de 2024 baseia-se na revisão e continuação dos pontos discutidos no TCC1, como o aprimoramento do modelo de aprendizagem de imitação introduzido pelo \textit{Learning By Cheating} (LBC) para aumentar a precisão na execução de manobras de desvio nos cenários existentes. Além disso, outro requisito importante é a introdução de novos cenários adversos para tornar o modelo mais especializado na tomada de decisão nos mesmos. Em paralelo, novos testes serão implementados e documentados durante o processo como exposto na Figura \ref{fig:cronograma}.
-
-\begin{figure}[H]
-    \centering
-    \caption{Cronograma TCC 2}
-    \includegraphics[scale=0.25]{figuras/TCC.png}\captionsetup{justification=centering}
-  \vspace{-0.2cm}
-     \\\textbf{\footnotesize Fonte: Elaborado pelos autores}
-    \label{fig:cronograma}
-\end{figure}
-
-
-
-
+\textcolor{red}{Os resultados obtidos neste trabalho servirão como base para o desenvolvimento do TCC2, onde será aprimorado o modelo de copiloto para situações adversas, com o objetivo de tornar o veículo autônomo mais seguro e confiável.}
+%------------------------------------------------------------------------------
+\section{Limitações do Modelo}
+\textcolor{red}{TBD...}
+%------------------------------------------------------------------------------
+\section{Conclusão}
+\textcolor{red}{TBD...}
+%------------------------------------------------------------------------------
 
 
 % =========== Investigar sobre o assunto ============= fernando
@@ -568,24 +567,6 @@ O planejamento para a continuação do desenvolvimento do trabalho durante o seg
  
  
 % ======================= Fernando e tom - Method =======================
-
-
-% \section{Desenvolvimento}
-% \textcolor{red}{Rascunho}
-
-% \section{Experimentos e Resultados Iniciais}
-\iffalse
- \newpage
- \singlespace{
- \bibliographystyle{abntex2-alf}
- \bibliography{bibliografia}
- }
-
-
-\end{document}
-\fi
-% \cite{9921776} -> fim
-% \citeonline{9921776} -> início
 
 \include{textos}
 
@@ -598,10 +579,10 @@ O planejamento para a continuação do desenvolvimento do trabalho durante o seg
 %% Inicio bibliografia
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \newpage
- \singlespace{
- %\bibliographystyle{abntex2-alf}
- \bibliography{bibliografia}
- }
+\newpage
+\singlespace{
+  %\bibliographystyle{abntex2-alf}
+  \bibliography{bibliografia}
+}
 
 \end{document}
