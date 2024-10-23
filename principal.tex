@@ -36,26 +36,31 @@
 \newcommand{\funcaoB}{}
 \newcommand{\emailB}{arthrviniciusbarbosa@gmail.com}
 \newcommand{\cursB}{Graduação em Engenharia de Computação da PUC Minas}
-% 
-\newcommand{\AutorC}{Fernando Luiz Lessa de Araujo}
+%
+\newcommand{\AutorC}{Christian D. C. Vieira}
 \newcommand{\funcaoC}{}
-\newcommand{\emailC}{feluizlessa@gmail.com}
+\newcommand{\emailC}{christian.david@sga.pucminas.br}
 \newcommand{\cursC}{Graduação em Engenharia de Computação da PUC Minas}
-
-\newcommand{\AutorD}{Gleydiston Braganca Martins Dos Santos}
+% 
+\newcommand{\AutorD}{Fernando Luiz Lessa de Araujo}
 \newcommand{\funcaoD}{}
-\newcommand{\emailD}{gleydiston35@gmail.com}
+\newcommand{\emailD}{feluizlessa@gmail.com}
 \newcommand{\cursD}{Graduação em Engenharia de Computação da PUC Minas}
 
-\newcommand{\AutorE}{Pedro Augusto Vaz De Souza E Silva}
+\newcommand{\AutorE}{Gleydiston Braganca Martins Dos Santos}
 \newcommand{\funcaoE}{}
-\newcommand{\emailE}{pavssilva@sga.pucminas.br}
+\newcommand{\emailE}{gleydiston35@gmail.com}
 \newcommand{\cursE}{Graduação em Engenharia de Computação da PUC Minas}
 
-\newcommand{\AutorF}{Felipe Augusto Lara Soares}
-\newcommand{\funcaoF}{Orientador}
-\newcommand{\emailF}{felipesoares@pucminas.br}
-\newcommand{\cursF}{Engenharia de Computação}
+\newcommand{\AutorF}{Pedro Augusto Vaz De Souza E Silva}
+\newcommand{\funcaoF}{}
+\newcommand{\emailF}{pavssilva@sga.pucminas.br}
+\newcommand{\cursF}{Graduação em Engenharia de Computação da PUC Minas}
+
+\newcommand{\AutorG}{Felipe Augusto Lara Soares}
+\newcommand{\funcaoG}{Orientador}
+\newcommand{\emailG}{felipesoares@pucminas.br}
+\newcommand{\cursG}{Engenharia de Computação}
 
 % Definir macros para o nome da Instituição, da Faculdade, etc.
 \newcommand{\univ}{Pontifícia Universidade Católica de Minas Gerais}
@@ -212,7 +217,9 @@ O artigo \citeonline{10189852} propõe um algoritmo utilizando \textit{Deep Rein
 Similarmente, no artigo \citeonline{9289701}, os autores também testaram a aplicação de um algoritmo \textit{Deep Q-Learning} em simulações ad-hoc no CARLA para detectar e desviar de buracos em estradas, respeitando regras de eficiência energética e velocidade de execução para o funcionamento saudável dos sensores em uma implementação real. Na conclusão, decidiram manter apenas o sistema de detecção de buracos, pois os resultados do sistema de desvio não foi satisfatório, apresentando resultados percentuais abaixo da taxa de sucesso em cenários na quais pilotos humanos conseguiriam desviar.
 
 \section{Metodologia}
-Nesta seção, são explorados os materiais e método utilizado para a implementação de um veículo autônomo enquadrado no nível 3 descrito na Tabela \ref{tab:TabelaNAD} e análise dos resultados.
+Nesta seção, são explorados os materiais e método utilizados para a implementação
+de um veículo autônomo enquadrado no nível 3 descrito na Tabela \ref{tab:TabelaNAD}
+e análise dos resultados.
 
 \subsection{Materiais}
 
@@ -236,18 +243,20 @@ As imagens utilizadas no treinamento da IA foram obtidas pelo \textit{sensor cam
 
 Utilizando o \textit{sensor lidar ray cast} que simula um sensor LIDAR rotativo de projeção de raios de luz, é possível gerar uma nuvem de pontos da superfície externa de um objeto que, ao final, pode ser utilizado para detectar a distância que o objeto se encontra.
 
-O sensor \textit{camera semantic segmentation} obtém imagens classificando cada objeto com uma cor de acordo com a etiqueta que o elemento recebeu no início da simulação e assim ajudando a definir melhor o que é cada objeto do cenário onde o veículo está localizado.
-%como pode ser observado na Figura \ref{fig:carla_simulator_sensor_segmentacao}.
-
-%\begin{figure}[h]
-%    \centering
-%    \caption{Visão do sensor de segmentação semântica no CARLA}
-%    \includegraphics[scale=0.27]{figuras/sensor-%seguimentaçao.jpeg}\captionsetup{justification=centering}
-%  \vspace{-0.2cm}
-%     \\\textbf{\footnotesize Fonte: Elaborado pelos autores}
-%    \label{fig:carla_simulator_sensor_segmentacao}
-%\end{figure}
-
+O sensor \textit{camera semantic segmentation} obtém imagens classificando cada
+objeto com uma cor de acordo com a etiqueta que o elemento recebeu no início da
+simulação e assim ajudando a definir melhor o que é cada objeto do cenário onde
+o veículo está localizado.\iffalse, como pode ser observado na
+Figura \ref{fig:carla_simulator_sensor_segmentacao}.
+\begin{figure}[h]
+    \centering
+    \caption{Visão do sensor de segmentação semântica no CARLA}
+    \includegraphics[scale=0.27]{figuras/sensor-seguimentaçao.jpeg}\captionsetup{justification=centering}
+  \vspace{-0.2cm}
+     \\\textbf{\footnotesize Fonte: Elaborado pelos autores}
+    \label{fig:carla_simulator_sensor_segmentacao}
+\end{figure}
+\fi
 Ainda sobre sensores, foi utilizado o \textit{sensor other collision} que registra um evento, sempre que há uma colisão com um ator dentro do ambiente do CARLA. Para processar e tratar as imagens obtidas, foi utilizado a biblioteca \textit{OpenCV}, responsável pelos algoritmos de visão computacional fornecendo os dados para a Inteligência Artificial que foi construída com ajuda da ferramenta \textit{Pytorch}, que trata os dados para a tomada de decisões, refletindo na direção dentro do CARLA.
 
 % sobre sensor.camera.rgb
@@ -539,13 +548,14 @@ Como iniciativa para os próximos passos do trabalho, foi realizado um estudo de
     \label{fig:lane-detect3}
 \end{figure}
 
-Os resultados obtidos neste trabalho servirão como base para o desenvolvimento do TCC2, onde será aprimorado o modelo de copiloto para situações adversas, com o objetivo de tornar o veículo autônomo mais seguro e confiável.
-
-
+\textcolor{red}{Os resultados obtidos neste trabalho servirão como base para o desenvolvimento do TCC2, onde será aprimorado o modelo de copiloto para situações adversas, com o objetivo de tornar o veículo autônomo mais seguro e confiável.}
+%------------------------------------------------------------------------------
 \section{Limitações do Modelo}
-
+\textcolor{red}{TBD...}
+%------------------------------------------------------------------------------
 \section{Conclusão}
-
+\textcolor{red}{TBD...}
+%------------------------------------------------------------------------------
 
 
 % =========== Investigar sobre o assunto ============= fernando
@@ -554,24 +564,6 @@ Os resultados obtidos neste trabalho servirão como base para o desenvolvimento 
  
  
 % ======================= Fernando e tom - Method =======================
-
-
-% \section{Desenvolvimento}
-% \textcolor{red}{Rascunho}
-
-% \section{Experimentos e Resultados Iniciais}
-\iffalse
- \newpage
- \singlespace{
- \bibliographystyle{abntex2-alf}
- \bibliography{bibliografia}
- }
-
-
-\end{document}
-\fi
-% \cite{9921776} -> fim
-% \citeonline{9921776} -> início
 
 \include{textos}
 
@@ -584,10 +576,10 @@ Os resultados obtidos neste trabalho servirão como base para o desenvolvimento 
 %% Inicio bibliografia
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
- \newpage
- \singlespace{
- %\bibliographystyle{abntex2-alf}
- \bibliography{bibliografia}
- }
+\newpage
+\singlespace{
+  %\bibliographystyle{abntex2-alf}
+  \bibliography{bibliografia}
+}
 
 \end{document}
